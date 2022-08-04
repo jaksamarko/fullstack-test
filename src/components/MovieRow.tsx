@@ -18,11 +18,11 @@ const MovieRow = (data: MovieData) => {
     createWikiRequest(query).then((value) => {
       const results = value.query.search;
       if (results.length) {
-        console.log(results[0]);
-        SetWikidata({
-          title: results[0].title,
-          description: results[0].snippet.replace(/<[^>]+>/g, ""),
-        });
+        const title = results[0].title;
+        //We get a html text, we have to strip out the HTML tags
+        const description = results[0].snippet.replace(/<[^>]+>/g, "");
+
+        SetWikidata({ title, description });
       }
     });
   };

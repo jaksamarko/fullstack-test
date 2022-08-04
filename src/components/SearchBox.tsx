@@ -2,7 +2,6 @@ import { gql, useQuery } from "@apollo/client";
 import { Box, Button, Grid, Input } from "@mui/material";
 import React, { useState } from "react";
 import { MovieData } from "../interface/MovieData";
-//import { Q_SEARCH_MOVIES } from "../apis/Requests";
 
 interface SearchBoxProps {
   updateCall: React.Dispatch<React.SetStateAction<MovieData[]>>;
@@ -27,28 +26,9 @@ const SearchBox = (props: SearchBoxProps) => {
   const requestSearch = async (query: string) => {
     movies.refetch({ query }).then((response) => {
       props.updateCall(response.data.searchMovies);
-      console.log("fetched");
       props.updateLoading(false);
     });
     props.updateLoading(movies.loading);
-
-    /*createRequest({
-      operationName: "SearchMovies",
-      query: `query SearchMovies($query: String!) {
-      searchMovies(query: $query) {
-        name
-        overview
-        releaseDate
-      }
-    }`,
-      variables: { query: query },
-    }).then((response) => {
-      response.json().then((resp) => {
-        const data = resp.data.searchMovies;
-
-        props.updateCall(data);
-      });
-    });*/
   };
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") requestSearch(searched);
