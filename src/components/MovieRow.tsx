@@ -1,4 +1,4 @@
-import { Box, Collapse, Link, TableCell, TableRow } from "@mui/material";
+import { Link, TableCell, TableRow } from "@mui/material";
 import { useState } from "react";
 import { createWikiRequest } from "../apis/Requests";
 import { MovieData } from "../interface/MovieData";
